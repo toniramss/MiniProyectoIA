@@ -68,4 +68,4 @@ print("\nPrimeras filas del DataFrame combinado:")
 print(df_wine.head(10))
 
 # --- 6. Guardar resultado en CSV ---
-#df_wine.to_csv('wine_quality_merged.csv', index=False)
+df_wine.to_csv('wine_quality_merged.csv', index=False)

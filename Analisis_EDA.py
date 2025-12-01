@@ -33,7 +33,7 @@ ax = sns.histplot(
     kde=False
 )
 
-# Añadir el número de vinos encima de cada barra
+# Añadir el número de vinos encima de cada barra (Histograma)
 for p in ax.patches:
     height = p.get_height()
     if height > 0:
@@ -45,7 +45,7 @@ for p in ax.patches:
             fontsize=10
         )
 
-# Añadir una línea vertical en la media
+# Añadir una línea vertical en la media (Histograma)
 mean_quality = df["quality"].mean()
 plt.axvline(mean_quality, color="red", linestyle="--", label=f"Media = {mean_quality:.2f}")
 

@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.express as px
 
 # Cargar el CSV
 df = pd.read_csv("wine_quality_merged.csv")

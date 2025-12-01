@@ -17,6 +17,8 @@ print(df_white_wine.describe())
 
 print("\nInfo")
 print(df_red_wine.info())
+
+print("\nInfo")
 print(df_white_wine.info())
 
 print("Cantidad de nulos por columna red wine")
@@ -50,3 +52,17 @@ print(df_white_wine.columns)
 
 print(len(df_red_wine))
 print(len(df_white_wine))
+
+# Añadir columna para distinguir el tipo de vino
+df_red_wine['color'] = 'red'
+df_white_wine['color'] = 'white'
+
+# Unir ambos DataFrames
+df_wine = pd.concat([df_red_wine, df_white_wine], ignore_index=True)
+
+# Verifica el resultado
+print(df_wine.info())
+print(df_wine.head(10))
+
+# Guardar el DataFrame combinado en un nuevo archivo CSV
+# df_wine.to_csv('wine_quality_merged.csv', index=False)

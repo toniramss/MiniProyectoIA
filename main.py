@@ -6,4 +6,4 @@ irl_white_wine = "https://raw.githubusercontent.com/shrikant-temburwar/Wine-Qual
 df_red_wine = pd.read_csv(url_red_wine, sep=';')
 df_white_wine = pd.read_csv(irl_white_wine, sep=';')
 
-df_red_wine.head()
+print(df_red_wine.head())

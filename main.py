@@ -18,6 +18,16 @@ print(df_red_wine.isnull().sum())
 print("\nCantidad de duplicados")
 print(df_red_wine.duplicated().sum())
 
+
+# Mostrar filas duplicadas (posible informe)
+duplicates = df_red_wine[df_red_wine.duplicated(keep=False)]
+duplicates_sorted = duplicates.sort_values(list(df_red_wine.columns))
+
+print(duplicates_sorted)
+
+#Eliminar las filas duplicadas
+df_red_wine = df_red_wine.drop_duplicates()
+
 # Quitar espacios en nombres de columnas
 df_red_wine.columns = df_red_wine.columns.str.strip().str.lower().str.replace(' ', '_')
 print(df_red_wine.columns)

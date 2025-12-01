@@ -12,6 +12,10 @@ print(df_red_wine.head())
 print("Describe")
 print(df_red_wine.describe())
 
+print("\nInfo")
+print(df_red_wine.info())
+print(df_white_wine.info())
+
 print("Cantidad de nulos por columna")
 print(df_red_wine.isnull().sum())
 

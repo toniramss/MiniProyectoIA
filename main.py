@@ -20,3 +20,5 @@ df_red_wine.columns = df_red_wine.columns.str.strip().str.lower().str.replace(' 
 print(df_red_wine.columns)
 df_white_wine.columns = df_white_wine.columns.str.strip().str.lower().str.replace(' ', '_')
 print(df_white_wine.columns)
+
+hola = "hola mundo"

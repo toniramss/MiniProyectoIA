@@ -16,6 +16,13 @@ plt.title("Matriz de correlación del Wine Quality")
 plt.tight_layout()
 plt.show()
 
+print("\nCorrelación de cada característica con la calidad del vino:")
+print(df.corr()["quality"].sort_values(ascending=False))
+
+# Verificar si hay valores negativos en las columnas numéricas
+print("\nValores negativos por columna:")
+print((df < 0).sum())
+
 # Histograma de la variable 'quality' con conteos y media
 plt.figure(figsize=(8, 5))
 ax = sns.histplot(

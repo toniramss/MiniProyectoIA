@@ -10,15 +10,16 @@ print(df_red_wine.head())
 
 
 print("Describe")
-#print(df_red_wine.describe())
+print(df_red_wine.describe())
 
 print("Cantidad de nulos por columna")
 print(df_red_wine.isnull().sum())
+
+print("\nCantidad de duplicados")
+print(df_red_wine.duplicated().sum())
 
 # Quitar espacios en nombres de columnas
 df_red_wine.columns = df_red_wine.columns.str.strip().str.lower().str.replace(' ', '_')
 print(df_red_wine.columns)
 df_white_wine.columns = df_white_wine.columns.str.strip().str.lower().str.replace(' ', '_')
 print(df_white_wine.columns)
-
-hola = "hola mundo"

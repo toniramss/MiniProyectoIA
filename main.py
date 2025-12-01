@@ -65,4 +65,4 @@ print(df_wine.info())
 print(df_wine.head(10))
 
 # Guardar el DataFrame combinado en un nuevo archivo CSV
-# df_wine.to_csv('wine_quality_merged.csv', index=False)
+df_wine.to_csv('wine_quality_merged.csv', index=False)

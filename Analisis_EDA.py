@@ -62,7 +62,7 @@ plt.show()
 
 # Histogramas de variables seleccionadas por tipo de vino
 vars_plot = ["density", "residual_sugar", "chlorides", "alcohol"]
-color_map = {0: "white", 1: "red"}  # 0 -> white, 1 -> red
+color_map = {0: "white", 1: "red"}
 
 for var in vars_plot:
     stats = df.groupby("color")[var].agg(["mean", "count"]).round(2)
@@ -77,17 +77,17 @@ for var in vars_plot:
         bins=30
     )
 
-    # Recorrer ejes y poner título específico con red/white
     for ax, (color_val, row) in zip(g.axes.flat, stats.iterrows()):
         mean_val = row["mean"]
         n_val = int(row["count"])
-        color_name = color_map[color_val]  # convierte 0/1 a red/white
+        color_name = color_map[color_val]
         ax.set_title(f"{color_name} wine | {var}\nmedia={mean_val}, n={n_val}")
 
     g.set_axis_labels(var, "Densidad")
-    plt.suptitle(f"Distribución de {var} por tipo de vino", y=1.05)
-    plt.tight_layout()
+    plt.suptitle(f"Distribución de {var} por tipo de vino", y=0.98)
+    plt.tight_layout(rect=[0, 0, 1, 0.94])  # deja espacio arriba
     plt.show()
+
 
 
 #BOXPLOTS
@@ -147,7 +147,7 @@ todos los valores que se alejan un poco hacia la derecha aparecen como outliers.
 tantos puntos sueltos: no es un error, simplemente esta variable es muy irregular y tiene muchos 
 valores altos que se consideran extremos."""
 plt.figure(figsize=(6, 4))
-sns.boxplot(x=df["sulphates"], color="skyblue")
+sns.boxplot(data=df, x="color", y="sulphates")
+plt.xticks([0,1], ["white","red"])
 plt.title("Boxplot de Sulphates")
-plt.xlabel("Sulphates")
 plt.show()

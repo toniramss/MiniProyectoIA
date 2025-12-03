@@ -100,17 +100,52 @@ de 15° que aparece como un outlier por estar fuera del rango habitual."""
 
 # Boxplot de la variable 'alcohol'
 plt.figure(figsize=(6, 4))
-sns.boxplot(x=df["alcohol"], color="violet")
-plt.title("Boxplot de Alcohol")
-plt.xlabel("Alcohol")
+sns.boxplot(data=df, x="color", y="alcohol")
+plt.xticks([0,1], ["white","red"])
+plt.title("Alcohol por tipo de vino")
 plt.show()
 
+# Boxplot de la variable 'residual_sugar'
+"""En este boxplot se observa que la mayoría de los vinos tienen un contenido de azúcar residual 
+bastante bajo, concentrado entre aproximadamente 1 y 15 gramos por litro. Sin embargo, hay una 
+gran cantidad de outliers que se extienden mucho más allá de este rango, llegando incluso a valores 
+superiores a 200 gramos por litro. Esto indica que, aunque la mayoría de los vinos tienen niveles 
+bajos de azúcar residual, existen algunos vinos con cantidades extremadamente altas que se consideran 
+atípicos en comparación con el resto de la muestra."""
+plt.figure(figsize=(6,4))
+sns.boxplot(data=df, x="color", y="residual_sugar")
+plt.xticks([0,1], ["white","red"])
+plt.title("Residual sugar por tipo de vino")
+plt.show()
+
+# Boxplot de la variable 'density'
+"""En este boxplot se observa que la mayoría de los vinos tienen una densidad concentrada en un rango 
+estrecho, aproximadamente entre 0.98 y 1.01. Sin embargo, hay varios outliers que se extienden más allá de este rango,
+lo que indica que existen vinos con densidades atípicas en comparación con la mayoría de la muestra. Estos outliers pueden 
+representar vinos con características físicas inusuales."""
+plt.figure(figsize=(6,4))
+sns.boxplot(data=df, x="color", y="density")
+plt.xticks([0,1], ["white","red"])
+plt.title("Density por tipo de vino")
+plt.show()
+
+# Boxplot de la variable 'chlorides'
+"""En este boxplot se observa que la mayoría de los vinos tienen niveles de cloruros concentrados en un rango 
+estrecho, aproximadamente entre 0.03 y 0.09. Sin embargo, hay varios outliers que se extienden más allá de este rango,
+lo que indica que existen vinos con niveles de cloruros atípicos en comparación con la mayoría de la muestra. Estos outliers pueden 
+representar vinos con características químicas inusuales."""
+plt.figure(figsize=(6,4))
+sns.boxplot(data=df, x="color", y="chlorides")
+plt.xticks([0,1], ["white","red"])
+plt.title("Chlorides por tipo de vino")
+plt.show()
+
+# Boxplot de la variable 'sulphates'
 """En este boxplot se ve que la mayoría de los vinos tienen valores de sulphates bastante bajos, 
 concentrados entre aproximadamente 0.45 y 0.65. Como la mayor parte de los datos está muy junta, 
 todos los valores que se alejan un poco hacia la derecha aparecen como outliers. Por eso salen 
 tantos puntos sueltos: no es un error, simplemente esta variable es muy irregular y tiene muchos 
 valores altos que se consideran extremos."""
-# Boxplot de la variable 'sulphates'
 plt.figure(figsize=(6, 4))
 sns.boxplot(x=df["sulphates"], color="skyblue")
 plt.title("Boxplot de Sulphates")

@@ -60,32 +60,6 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
-#Informe: 
-"""En este boxplot se observa que la mayoría de los vinos tienen un contenido de alcohol 
-entre aproximadamente 9.8° y 11.1°, con una mediana cercana a 10.3°, mientras que los valores 
-normales se extienden desde unos 8.4° hasta 14°, destacando únicamente un vino con alrededor 
-de 15° que aparece como un outlier por estar fuera del rango habitual."""
-
-# Boxplot de la variable 'alcohol'
-plt.figure(figsize=(6, 4))
-sns.boxplot(x=df["alcohol"], color="violet")
-plt.title("Boxplot de Alcohol")
-plt.xlabel("Alcohol")
-plt.show()
-
-"""En este boxplot se ve que la mayoría de los vinos tienen valores de sulphates bastante bajos, 
-concentrados entre aproximadamente 0.45 y 0.65. Como la mayor parte de los datos está muy junta, 
-todos los valores que se alejan un poco hacia la derecha aparecen como outliers. Por eso salen 
-tantos puntos sueltos: no es un error, simplemente esta variable es muy irregular y tiene muchos 
-valores altos que se consideran extremos."""
-# Boxplot de la variable 'sulphates'
-plt.figure(figsize=(6, 4))
-sns.boxplot(x=df["sulphates"], color="skyblue")
-plt.title("Boxplot de Sulphates")
-plt.xlabel("Sulphates")
-plt.show()
-
 # Histogramas de variables seleccionadas por tipo de vino
 vars_plot = ["density", "residual_sugar", "chlorides", "alcohol"]
 color_map = {0: "white", 1: "red"}  # 0 -> white, 1 -> red
@@ -114,3 +88,31 @@ for var in vars_plot:
     plt.suptitle(f"Distribución de {var} por tipo de vino", y=1.05)
     plt.tight_layout()
     plt.show()
+
+
+#BOXPLOTS
+
+#Informe: 
+"""En este boxplot se observa que la mayoría de los vinos tienen un contenido de alcohol 
+entre aproximadamente 9.8° y 11.1°, con una mediana cercana a 10.3°, mientras que los valores 
+normales se extienden desde unos 8.4° hasta 14°, destacando únicamente un vino con alrededor 
+de 15° que aparece como un outlier por estar fuera del rango habitual."""
+
+# Boxplot de la variable 'alcohol'
+plt.figure(figsize=(6, 4))
+sns.boxplot(x=df["alcohol"], color="violet")
+plt.title("Boxplot de Alcohol")
+plt.xlabel("Alcohol")
+plt.show()
+
+"""En este boxplot se ve que la mayoría de los vinos tienen valores de sulphates bastante bajos, 
+concentrados entre aproximadamente 0.45 y 0.65. Como la mayor parte de los datos está muy junta, 
+todos los valores que se alejan un poco hacia la derecha aparecen como outliers. Por eso salen 
+tantos puntos sueltos: no es un error, simplemente esta variable es muy irregular y tiene muchos 
+valores altos que se consideran extremos."""
+# Boxplot de la variable 'sulphates'
+plt.figure(figsize=(6, 4))
+sns.boxplot(x=df["sulphates"], color="skyblue")
+plt.title("Boxplot de Sulphates")
+plt.xlabel("Sulphates")
+plt.show()

@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 
+sns.set(style="whitegrid")
+
 # Cargar el CSV
 df = pd.read_csv("wine_quality_merged.csv")
 
@@ -83,3 +85,32 @@ sns.boxplot(x=df["sulphates"], color="skyblue")
 plt.title("Boxplot de Sulphates")
 plt.xlabel("Sulphates")
 plt.show()
+
+# Histogramas de variables seleccionadas por tipo de vino
+vars_plot = ["density", "residual_sugar", "chlorides", "alcohol"]
+color_map = {0: "white", 1: "red"}  # 0 -> white, 1 -> red
+
+for var in vars_plot:
+    stats = df.groupby("color")[var].agg(["mean", "count"]).round(2)
+
+    g = sns.FacetGrid(df, col="color", sharex=False, sharey=False)
+    g.map_dataframe(
+        sns.histplot,
+        x=var,
+        kde=True,
+        stat="density",
+        common_norm=False,
+        bins=30
+    )
+
+    # Recorrer ejes y poner título específico con red/white
+    for ax, (color_val, row) in zip(g.axes.flat, stats.iterrows()):
+        mean_val = row["mean"]
+        n_val = int(row["count"])
+        color_name = color_map[color_val]  # convierte 0/1 a red/white
+        ax.set_title(f"{color_name} wine | {var}\nmedia={mean_val}, n={n_val}")
+
+    g.set_axis_labels(var, "Densidad")
+    plt.suptitle(f"Distribución de {var} por tipo de vino", y=1.05)
+    plt.tight_layout()
+    plt.show()

@@ -71,9 +71,8 @@ for var in vars_plot:
     g.map_dataframe(
         sns.histplot,
         x=var,
-        kde=True,
-        stat="density",
-        common_norm=False,
+        kde=False,
+        stat="count",
         bins=30
     )
 
@@ -83,9 +82,9 @@ for var in vars_plot:
         color_name = color_map[color_val]
         ax.set_title(f"{color_name} wine | {var}\nmedia={mean_val}, n={n_val}")
 
-    g.set_axis_labels(var, "Densidad")
-    plt.suptitle(f"Distribución de {var} por tipo de vino", y=0.98)
-    plt.tight_layout(rect=[0, 0, 1, 0.94])  # deja espacio arriba
+    g.set_axis_labels(var, "Recuento de vinos")
+    plt.suptitle(f"Recuento de vinos por intervalo de {var} y tipo de vino", y=0.98)
+    plt.tight_layout(rect=[0, 0, 1, 0.94])
     plt.show()
 
 
@@ -150,4 +149,84 @@ plt.figure(figsize=(6, 4))
 sns.boxplot(data=df, x="color", y="sulphates")
 plt.xticks([0,1], ["white","red"])
 plt.title("Boxplot de Sulphates")
+plt.show()
+
+# Gráfica de líneas de volatile_acidity por calidad y color
+# Media de volatile_acidity por calidad y color
+va_mean = (
+    df.groupby(["quality", "color"])["volatile_acidity"]
+      .mean()
+      .reset_index()
+)
+
+va_mean["color_name"] = va_mean["color"].map({0: "white", 1: "red"})
+
+plt.figure(figsize=(8, 5))
+sns.lineplot(
+    data=va_mean,
+    x="quality",
+    y="volatile_acidity",
+    hue="color_name",
+    marker="o"
+)
+plt.title("Acidez volátil media por calidad y tipo de vino")
+plt.xlabel("Calidad")
+plt.ylabel("Volatile acidity media")
+plt.legend(title="Tipo de vino")
+plt.tight_layout()
+plt.show()
+
+# Gráfica de líneas de sulphates por calidad y color
+# Media de sulphates por calidad y color
+sul_mean = (
+    df.groupby(["quality", "color"])["sulphates"]
+      .mean()
+      .reset_index()
+)
+
+sul_mean["color_name"] = sul_mean["color"].map({0: "white", 1: "red"})
+
+plt.figure(figsize=(8, 5))
+sns.lineplot(
+    data=sul_mean,
+    x="quality",
+    y="sulphates",
+    hue="color_name",
+    marker="o"
+)
+plt.title("Sulphates medios por calidad y tipo de vino")
+plt.xlabel("Calidad")
+plt.ylabel("Sulphates medios")
+plt.legend(title="Tipo de vino")
+plt.tight_layout()
+plt.show()
+
+# Gráfica de líneas de residual_sugar por alcohol y color
+# Definir bins de alcohol
+n_bins = 8  # ajusta si quieres más/menos resolución
+df["alcohol_bin"] = pd.cut(df["alcohol"], bins=n_bins)
+
+alco_sugar = (
+    df.groupby(["alcohol_bin", "color"])["residual_sugar"]
+      .mean()
+      .reset_index()
+)
+
+alco_sugar["color_name"] = alco_sugar["color"].map({0: "white", 1: "red"})
+# Usamos el centro del bin para el eje X
+alco_sugar["alcohol_bin_center"] = alco_sugar["alcohol_bin"].apply(lambda x: x.mid)
+
+plt.figure(figsize=(8, 5))
+sns.lineplot(
+    data=alco_sugar,
+    x="alcohol_bin_center",
+    y="residual_sugar",
+    hue="color_name",
+    marker="o"
+)
+plt.title("Azúcar residual media por bin de alcohol y tipo de vino")
+plt.xlabel("Alcohol (centro del bin)")
+plt.ylabel("Residual sugar media")
+plt.legend(title="Tipo de vino")
+plt.tight_layout()
 plt.show()

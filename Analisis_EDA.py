@@ -230,3 +230,30 @@ plt.ylabel("Residual sugar media")
 plt.legend(title="Tipo de vino")
 plt.tight_layout()
 plt.show()
+
+# Scatterplot de Alcohol vs Density por tipo de vino
+"""Visualización de la relación entre Alcohol y Density por tipo de vino"""
+"""En el gráfico se observa que los vinos blancos se concentran en valores de
+densidad más bajos, mientras que los vinos tintos presentan densidades ligeramente
+superiores. Esto indica que, en este dataset específico, la densidad media del vino
+tinto es algo mayor que la del vino blanco."""
+ 
+custom_palette = {0: "#8FFFA0", 1: "#FF4B4B"}  # 0=blanco(verde), 1=tinto(rojo)
+ 
+ax = sns.scatterplot(
+    data=df,
+    x="density",
+    y="alcohol",
+    hue="color",
+    palette=custom_palette
+)
+ 
+plt.title("Alcohol vs Density por tipo de vino")
+ 
+# Obtener handles y labels verdaderos
+handles, labels = ax.get_legend_handles_labels()
+ 
+# Cambiar solo el texto asociado a 0 y 1 sin invertir posiciones
+ax.legend(handles, ["Vino Blanco", "Vino Tinto"], title="Tipo de Vino")
+ 
+plt.show()

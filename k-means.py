@@ -54,6 +54,31 @@ plt.title("Silhouette por k")
 plt.tight_layout()
 plt.show()
 
+"""
+Los dos gráficos muestran cómo cambia la calidad del clustering al variar k, y juntos 
+justifican por qué tiene sentido considerar k=2 y k=4 en tu análisis de vinos.
+
+Gráfico 1: Método del codo (inercia vs k)
+    - El eje X es el número de clusters k y el eje Y es la inercia (SSE), que mide la 
+      suma de distancias de cada punto a su centroide: cuanto menor es, más compactos 
+      son los clusters.​
+    
+    - La curva baja muy fuerte de k=2 a k=3, sigue bajando bastante de k=3 a k=4, y a 
+      partir de ahí la reducción es cada vez más pequeña: esto sugiere que el “codo” 
+      está alrededor de k=4, porque añadir más clusters después de 4 apenas mejora la 
+      inercia en comparación con los saltos anteriores.
+
+Gráfico 2: Silhouette por k
+    - El eje X es k y el eje Y es el valor medio de silhouette, que va de -1 a 1 y mide 
+      lo bien separados y compactos que están los clusters: cuanto más alto, mejor.
+
+    - El valor máximo está en k=2, lo que indica que con dos grupos los vinos quedan muy 
+      bien separados; sin embargo, para k=4 el silhouette sigue siendo relativamente alto 
+      (mejor que k=3 y claramente mejor que k≥5), por lo que k=4 ofrece un buen compromiso 
+      entre calidad del clustering y riqueza de interpretación (más tipos de vino distintos 
+      sin usar la calidad).
+"""
+
 print("Inercia por k:", dict(zip(k_values, inertias)))
 print("Silhouette por k:", dict(zip(k_values, silhouettes)))
 

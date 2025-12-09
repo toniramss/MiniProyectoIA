@@ -18,7 +18,7 @@ print(df["quality"].value_counts().sort_index())
 
 
 # Crear variable binaria
-# Calidad alta 1 - Calidad baja 0
+# Calidad alta 1 (6, 7, 8, 9) - Calidad baja 0 (3, 4, 5)
 df["quality_bin"] = df["quality"].apply(lambda x: 1 if x >= 6 else 0)
 print("\nVinos con calidad binaria (0=baja, 1=alta):")
 print(df[["quality", "quality_bin"]].head())
@@ -64,7 +64,13 @@ print("\nAccuracy:", accuracy_score(y_test, y_pred))
 print("\nClassification report:\n", classification_report(y_test, y_pred))
 
 
-
+"""El modelo KNN que he hecho para predecir si un vino es bueno o malo me ha 
+dado una accuracy de alrededor del 75%. Esto quiere decir que acierta más o 
+menos 3 de cada 4 veces, lo cual está bastante bien. Viendo la matriz de confusión, 
+el modelo acierta sobre todo con los vinos buenos, porque en el dataset hay muchos 
+más vinos de calidad alta que baja. Por eso también se equivoca más cuando tiene 
+que detectar vinos malos. Aun así, el resultado es bastante sólido y mejora mucho 
+comparado con cuando intentábamos predecir todas las calidades por separado."""
 
 
 

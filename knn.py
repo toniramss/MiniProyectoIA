@@ -60,7 +60,7 @@ plt.ylabel("Real")
 plt.title("Matriz de confusión - KNN binario")
 plt.show()
 
-print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nAccuracy:", accuracy_score(y_test, y_pred))
 print("\nClassification report:\n", classification_report(y_test, y_pred))
 
 

@@ -77,6 +77,10 @@ Gráfico 2: Silhouette por k
       (mejor que k=3 y claramente mejor que k≥5), por lo que k=4 ofrece un buen compromiso 
       entre calidad del clustering y riqueza de interpretación (más tipos de vino distintos 
       sin usar la calidad).
+
+Codo sugiere alrededor de 4 clusters, mientras que el silhouette máximo se da en 2, así que 
+se analizan ambos valores de k porque representan dos granularidades razonables de segmentación 
+del vino.
 """
 
 print("Inercia por k:", dict(zip(k_values, inertias)))
